@@ -86,12 +86,12 @@ for args.reduce_type in ['large','small']:
             print(f'len of the small trainset:{len(small_train_idx)}')
             if args.reduce_type == 'large':
                 if args.dataset == 'cifar10':
-                    trainset = CIFAR10(root='/u/nkp2mr/rui/data/cifar10', indices=large_train_idx,
+                    trainset = CIFAR10(root=CIFAR_TRAIN, indices=large_train_idx,
                                                             download=False, transform=transform_train)
                 trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=0)
             elif args.reduce_type == 'small':
                 if args.dataset == 'cifar10': 
-                    randomset = CIFAR10(root='/u/nkp2mr/rui/data/cifar10', indices=small_train_idx,
+                    randomset = CIFAR10(root=CIFAR_TRAIN, indices=small_train_idx,
                                                             download=False, transform=transform_train)
                 trainloader = torch.utils.data.DataLoader(randomset, batch_size=128, shuffle=True, num_workers=0)
             train_model(args,target_model,trainloader,test_loader, epoch=100)
